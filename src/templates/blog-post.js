@@ -1,15 +1,15 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-// import '../css/blog-post.css';
-
+import styles from '../css/blog-post.module.css';
+console.log(styles)
 export default function Template({ data }) {
   const { markdownRemark: post } = data;
   return(
     <div className="blog-post-container">
       <Helmet title={`Your Blog Name - ${post.frontmatter.title}`} />
       <div className="blog-post">
-        <h1>{post.frontmatter.title}</h1>
+        <h1 className={styles.blogpostheader}>{post.frontmatter.title}</h1>
         <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
     </div>

@@ -1,41 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import styled, {injectGlobal} from "styled-components";
 
-import './index.css'
+import Header from '../components/Header';
 
-const Header = () => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          Daniel Gading
-        </Link>
-      </h1>
-    </div>
-  </div>
-)
+injectGlobal`
+  @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
+  body {
+    color: #212121;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  } 
+`
+
+const MainLayout = styled.div`
+  padding: 20px;
+`;
+
+const ContentArea = styled.section`
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100%;
+  a {
+    display: inline-block;
+    color: #cd2026;
+    text-decoration: none;
+    transition: all .1s ease-in-out;
+    border-bottom: 1px solid transparent;
+    :hover {
+      transform: scale(1.2);
+      border-bottom: 1px solid #cd2026;
+    }
+  }
+`;
 
 const TemplateWrapper = ({ children }) => (
-  <div>
+  <MainLayout>
     <Helmet
       title="Daniel Gading's Blogfolio"
       meta={[
@@ -44,17 +45,10 @@ const TemplateWrapper = ({ children }) => (
       ]}
     />
     <Header />
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0,
-      }}
-    >
+    <ContentArea>
       {children()}
-    </div>
-  </div>
+    </ContentArea>
+  </MainLayout>
 )
 
 TemplateWrapper.propTypes = {

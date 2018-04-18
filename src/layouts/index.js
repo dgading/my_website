@@ -33,6 +33,10 @@ const ContentArea = styled.section`
       border-bottom: 1px solid #cd2026;
     }
   }
+  code {
+    background: lightyellow;
+    padding: 0 5px;
+  }
 `;
 
 const TemplateWrapper = ({ children }) => (
